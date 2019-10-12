@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="true" project-jdk-name="13" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$/../../Play/projektplay-18d64eda442a13a0a8306b2d6b44194be579bd94/projektplay.git" value="1496654206000" />
+        <entry key="$PROJECT_DIR$/../../Play/projektplay/projektplay.git" value="1497212674000" />
+        <entry key="$PROJECT_DIR$/../../Play/przychodniaplay/przychodniaplay.git/nsaiplay" value="1491813366000" />
+        <entry key="$USER_HOME$/Play/kinga" value="1462639998885" />
+        <entry key="$USER_HOME$/Play/nsai/nsai" value="1444898644642" />
+        <entry key="$USER_HOME$/Play/nsaiPlaySummer2017" value="1488793858987" />
+        <entry key="$USER_HOME$/Play/nsaiPlaySummer2017/summer2017" value="1488758344974" />
+        <entry key="$USER_HOME$/Play/nsaiPlayWinter2016" value="1477383824886" />
+        <entry key="$USER_HOME$/Play/nsaiSummer2017" value="1488784588061" />
+        <entry key="$USER_HOME$/Play/nsai_2015" value="1459272203327" />
+        <entry key="$USER_HOME$/Play/nsai_summer_2016" value="1459782560146" />
+        <entry key="$USER_HOME$/Play/play_nsai" value="1459860807614" />
+        <entry key="$USER_HOME$/Play/sobota_play" value="1462629104890" />
+        <entry key="$USER_HOME$/Play/summer2017" value="1488761777109" />
+        <entry key="$USER_HOME$/Play/test" value="1459271383369" />
+        <entry key="$USER_HOME$/Play/test2/test2" value="1444771735350" />
+        <entry key="$USER_HOME$/Play/test333/test333" value="1444871612478" />
+        <entry key="$USER_HOME$/Play/test555/test555" value="1444852390688" />
+        <entry key="$USER_HOME$/Play/testtest" value="1477342170869" />
+        <entry key="$USER_HOME$/Play_SBT/nsai" value="1491039889709" />
+        <entry key="$USER_HOME$/Play_SBT/nsaiPlay/nsaiplay" value="1491160998482" />
+        <entry key="$USER_HOME$/Play_SBT/nsaiTestAugust2017/nsaiaugust2017" value="1504174067470" />
+        <entry key="$USER_HOME$/Play_SBT/nsaiZaoczne/zaoczne2017" value="1491050737195" />
+      </map>
+    </option>
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="ScalaSbtSettings">
+    <option name="maximumHeapSize" value="2048" />
+    <option name="vmParameters" value="-XX:MaxPermSize=1024M" />
+  </component>
+</project>
