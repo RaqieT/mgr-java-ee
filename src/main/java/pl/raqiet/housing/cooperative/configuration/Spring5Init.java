@@ -1,4 +1,4 @@
-package pl.dmcs.rkotas.configuration;
+package pl.raqiet.housing.cooperative.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

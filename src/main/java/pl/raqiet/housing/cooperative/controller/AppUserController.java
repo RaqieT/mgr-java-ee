@@ -1,11 +1,11 @@
-package pl.dmcs.rkotas.controller;
+package pl.raqiet.housing.cooperative.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import pl.dmcs.rkotas.domain.AppUser;
+import pl.raqiet.housing.cooperative.domain.AppUser;
 
 @Controller
 public class AppUserController {
@@ -13,13 +13,9 @@ public class AppUserController {
     @RequestMapping(value = "/appUsers")
     public ModelAndView showAppUsers() {
 
-	 /*  AppUser appUser = new AppUser();
-	   appUser.setFirstName("rafal");
-	   appUser.setLastName("kotas");
-	   appUser.setEmail("rkotas@dmcs.pl");
-	   appUser.setTelephone("123456789");*/
+     AppUser appUser = new AppUser();
 
-	 return new ModelAndView("appUser", "appUser", new AppUser());
+	 return new ModelAndView("appUser", "appUser", appUser);
     }
 
     @RequestMapping(value = "/addAppUser", method = RequestMethod.POST)

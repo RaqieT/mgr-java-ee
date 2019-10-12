@@ -1,4 +1,4 @@
-package pl.dmcs.rkotas.configuration;
+package pl.raqiet.housing.cooperative.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("pl.dmcs.rkotas")
+@ComponentScan("pl.raqiet.housing.cooperative")
 public class Spring5Configuration implements WebMvcConfigurer {
 
     @Bean

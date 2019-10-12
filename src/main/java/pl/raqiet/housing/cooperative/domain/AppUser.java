@@ -1,4 +1,4 @@
-package pl.dmcs.rkotas.domain;
+package pl.raqiet.housing.cooperative.domain;
 
 public class AppUser {
 
