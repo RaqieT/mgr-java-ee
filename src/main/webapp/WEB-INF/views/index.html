@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Home')"/>
+<body>
+    <h1>Spring MVC + Thymeleaf  Hello World example</h1>
+    <p th:text="${serverTime}"></p>
+    <a href="/appUsers.html">App users page</a>
+</body>
+</html>

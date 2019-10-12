@@ -19,7 +19,7 @@ public class AppUserController {
     }
 
     @RequestMapping(value = "/addAppUser", method = RequestMethod.POST)
-    public String addAppUser(@ModelAttribute("appUser") AppUser appUser) {
+    public String addAppUser(@ModelAttribute AppUser appUser) {
 
         System.out.println("First Name: " + appUser.getFirstName() +
                 " Last Name: " + appUser.getLastName() + " Tel.: " +
