@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header(${block.id == null ? 'Create block' : 'Block ' + block.address})"/>
+<body>
+<nav th:replace="fragments/nav :: navbar('Blocks')" />
+<div class="container">
+    <h3><span th:text="${block.id == null ? 'Create block' : 'Block ' + block.address}"></span></h3>
+    <form action="#" th:action="@{/saveBlock}" th:object="${block}" method="post">
+
+        <table>
+            <tr>
+                <td><input th:type="hidden" th:field="*{id}" path="id" /></td>
+            </tr>
+            <tr>
+                <td><label path="address">Address</label></td>
+                <td><input th:field="*{address}" path="address" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input class="btn" th:classappend="${block.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="${block.id == null ? 'Create' : 'Save'}" />
+                    <a class="btn btn-secondary" href="/blocks">Back</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

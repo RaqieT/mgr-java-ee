@@ -12,6 +12,8 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link" th:classappend="${#request.requestURI == '/' ? 'active':''}" href="/">Home</a>
             <a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/appUsers') ? 'active':''}" href="/appUsers">Users</a>
+            <a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/blocks') ? 'active':''}" href="/blocks">Blocks</a>
+
         </div>
     </div>
 </nav>

@@ -42,8 +42,8 @@ public class AppUserController {
         return "appUserManager";
     }
 
-    @RequestMapping(value = "/addAppUser", method = RequestMethod.POST)
-    public String addAppUser(@ModelAttribute AppUser appUser) {
+    @RequestMapping(value = "/saveAppUser", method = RequestMethod.POST)
+    public String saveAppUser(@ModelAttribute AppUser appUser) {
 
         System.out.println("First Name: " + appUser.getFirstName() +
                 " Last Name: " + appUser.getLastName() + " Tel.: " +
@@ -58,7 +58,7 @@ public class AppUserController {
         return "redirect:appUsers.html";
     }
 
-    @RequestMapping("/delete/{appUserId}")
+    @RequestMapping("/appUsers/delete/{appUserId}")
     public String deleteUser(@PathVariable("appUserId") UUID id) {
         appUserService.removeAppUser(id);
         return "redirect:/appUsers.html";

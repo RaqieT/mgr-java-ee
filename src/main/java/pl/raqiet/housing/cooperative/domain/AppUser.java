@@ -5,7 +5,10 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -17,6 +20,7 @@ public class AppUser extends BaseEntity {
     private String lastName;
     private String email;
     private String telephone;
-    private int version;
+    @ManyToMany(mappedBy = "managers")
+    private Set<Block> blocks = new HashSet<>();
 }
 

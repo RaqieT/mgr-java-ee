@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Blocks')"/>
+<body>
+<nav th:replace="fragments/nav :: navbar('Blocks')" />
+<div class="container">
+    <h3>Blocks</h3>
+    <table class="table">
+        <tr>
+            <th scope="col">Address</th>
+            <th scope="col">Control</th>
+        </tr>
+        <tr th:each="block : ${blockList}">
+            <td th:text="${block.address}"/>
+            <td>
+                <a class="btn btn-primary" th:href="@{blocks/manager(blockId=${block.id})}">Go to</a>
+                <a class="btn btn-danger" th:href="${'blocks/delete/' + block.id}">Remove</a>
+            </td>
+        </tr>
+    </table>
+    <a class="btn btn-success" th:href="@{blocks/manager}">Create</a>
+</div>
+</body>
+</html>

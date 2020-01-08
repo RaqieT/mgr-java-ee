@@ -5,7 +5,7 @@
 <nav th:replace="fragments/nav :: navbar('Users')" />
 <div class="container">
     <h3><span th:text="${appUser.id == null ? 'Create user' : 'Update user'}"></span></h3>
-    <form action="#" th:action="@{/addAppUser}" th:object="${appUser}" method="post">
+    <form action="#" th:action="@{/saveAppUser}" th:object="${appUser}" method="post">
 
         <table>
             <tr>
@@ -29,8 +29,8 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <a class="btn btn-secondary" href="/appUsers">Back</a>
                     <input class="btn" th:classappend="${appUser.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="${appUser.id == null ? 'Create' : 'Save'}" />
+                    <a class="btn btn-secondary" href="/appUsers">Back</a>
                 </td>
             </tr>
         </table>

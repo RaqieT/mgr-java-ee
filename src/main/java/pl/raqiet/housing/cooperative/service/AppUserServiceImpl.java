@@ -1,5 +1,7 @@
 package pl.raqiet.housing.cooperative.service;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.raqiet.housing.cooperative.api.service.AppUserService;
@@ -12,12 +14,10 @@ import java.util.UUID;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AppUserServiceImpl implements AppUserService {
+    @NonNull
     private final AppUserRepository appUserRepository;
-
-    public AppUserServiceImpl(AppUserRepository appUserRepository) {
-        this.appUserRepository = appUserRepository;
-    }
 
     @Override
     public void addAppUser(AppUser appUser) {

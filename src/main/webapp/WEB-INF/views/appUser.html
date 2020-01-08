@@ -20,7 +20,7 @@
             <td th:text="${user.telephone}"/>
             <td>
                 <a class="btn btn-primary" th:href="@{appUsers/manager(appUserId=${user.id})}">Modify</a>
-                <a class="btn btn-danger" th:href="${'delete/' + user.id}">Remove</a>
+                <a class="btn btn-danger" th:href="${'appUsers/delete/' + user.id}">Remove</a>
             </td>
         </tr>
     </table>
