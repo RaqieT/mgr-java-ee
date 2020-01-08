@@ -19,8 +19,11 @@ import java.nio.charset.Charset;
 @ComponentScan("pl.raqiet.housing.cooperative")
 public class Spring5Configuration implements WebMvcConfigurer {
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
+
+    public Spring5Configuration(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
     /*
      * STEP 1 - Create SpringResourceTemplateResolver

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header(${appUser.id == null ? 'Create user' : 'Update user'})"/>
+<body>
+<nav th:replace="fragments/nav :: navbar('Users')" />
+<div class="container">
+    <h3><span th:text="${appUser.id == null ? 'Create user' : 'Update user'}"></span></h3>
+    <form action="#" th:action="@{/addAppUser}" th:object="${appUser}" method="post">
+
+        <table>
+            <tr>
+                <td><input th:type="hidden" th:field="*{id}" path="id" /></td>
+            </tr>
+            <tr>
+                <td><label path="firstName">First Name</label></td>
+                <td><input th:field="*{firstName}" path="firstName" /></td>
+            </tr>
+            <tr>
+                <td><label path="lastName">Last Name</label></td>
+                <td><input th:field="*{lastName}" path="lastName" /></td>
+            </tr>
+            <tr>
+                <td><label path="email">Email</label></td>
+                <td><input th:field="*{email}" path="email" /></td>
+            </tr>
+            <tr>
+                <td><label path="telephone">Telephone</label></td>
+                <td><input th:field="*{telephone}" path="telephone" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a class="btn btn-secondary" href="/appUsers">Back</a>
+                    <input class="btn" th:classappend="${appUser.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="${appUser.id == null ? 'Create' : 'Save'}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

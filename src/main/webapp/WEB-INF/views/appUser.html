@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Add app user')"/>
+<head th:replace="fragments/header :: header('Users')"/>
 <body>
-<h1>App user info:</h1>
-<form action="#" th:action="@{/addAppUser}" th:object="${appUser}" method="post">
-
-    <table>
+<nav th:replace="fragments/nav :: navbar('Users')" />
+<div class="container">
+    <h3>User list</h3>
+    <table class="table">
         <tr>
-            <td><label path="firstName">First Name</label></td>
-            <td><input th:field="*{firstName}" path="firstName" /></td>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Telephone</th>
+            <th scope="col">Control</th>
         </tr>
-        <tr>
-            <td><label path="lastName">Last Name</label></td>
-            <td><input th:field="*{lastName}" path="lastName" /></td>
-        </tr>
-        <tr>
-            <td><label path="email">Email</label></td>
-            <td><input th:field="*{email}" path="email" /></td>
-        </tr>
-        <tr>
-            <td><label path="telephone">Telephone</label></td>
-            <td><input th:field="*{telephone}" path="telephone" /></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Add AppUser"/>
+        <tr th:each="user : ${appUserList}">
+            <td th:text="${user.firstName}"/>
+            <td th:text="${user.lastName}"/>
+            <td th:text="${user.email}"/>
+            <td th:text="${user.telephone}"/>
+            <td>
+                <a class="btn btn-primary" th:href="@{appUsers/manager(appUserId=${user.id})}">Modify</a>
+                <a class="btn btn-danger" th:href="${'delete/' + user.id}">Remove</a>
             </td>
         </tr>
     </table>
-
-</form>
+    <a class="btn btn-success" th:href="@{appUsers/manager}">Create</a>
+</div>
 </body>
 </html>
