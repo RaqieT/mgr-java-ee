@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Home')"/>
+<head th:replace="fragments/header :: header(#{'nav.home'})"></head>
 <body>
-    <nav th:replace="fragments/nav :: navbar('Home')" />
+    <nav th:replace="fragments/nav :: navbar"></nav>
     <div class="jumbotron">
-        <h1 class="display-4" th:text="${serverTime}">Housing Cooperative</h1>
+        <h1 class="display-4" th:text="#{app.title}"></h1>
     </div>
 </body>
 </html>

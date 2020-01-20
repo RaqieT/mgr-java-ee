@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header(${block.id == null ? 'Create block' : 'Block ' + block.address})"/>
+<head th:replace="fragments/header :: header(#{'nav.blocks'})"></head>
 <body>
-<nav th:replace="fragments/nav :: navbar('Blocks')" />
+<nav th:replace="fragments/nav :: navbar"></nav>
 <div class="container">
     <h3><span th:text="${block.id == null ? 'Create block' : 'Block ' + block.address}"></span></h3>
     <form action="#" th:action="@{/saveBlock}" th:object="${block}" method="post">

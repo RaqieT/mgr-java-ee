@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header(${appUser.id == null ? 'Create user' : 'Update user'})"/>
+<head th:replace="fragments/header :: header(#{'nav.users'})"></head>
 <body>
-<nav th:replace="fragments/nav :: navbar('Users')" />
+<nav th:replace="fragments/nav :: navbar"></nav>
 <div class="container">
     <h3><span th:text="${appUser.id == null ? 'Create user' : 'Update user'}"></span></h3>
     <form action="#" th:action="@{/saveAppUser}" th:object="${appUser}" method="post">

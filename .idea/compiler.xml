@@ -11,8 +11,5 @@
         <module name="Spring5_JavaConfig" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="mgr-java-ee" target="13" />
-    </bytecodeTargetLevel>
   </component>
 </project>

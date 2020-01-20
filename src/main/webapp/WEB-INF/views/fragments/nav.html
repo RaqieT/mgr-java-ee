@@ -3,17 +3,30 @@
 <head>
 </head>
 <body>
-<nav th:fragment="navbar(pageTitle)" class="navbar navbar-expand-lg navbar-light bg-light">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Housing Cooperative</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" th:classappend="${#request.requestURI == '/' ? 'active':''}" href="/">Home</a>
-            <a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/appUsers') ? 'active':''}" href="/appUsers">Users</a>
-            <a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/blocks') ? 'active':''}" href="/blocks">Blocks</a>
-
+            <a class="nav-item nav-link" th:classappend="${#request.requestURI == '/' ? 'active':''}" href="/" th:text="#{nav.home}"></a>
+            <a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/appUsers') ? 'active':''}" href="/appUsers" th:text="#{nav.users}"></a>
+            <a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/blocks') ? 'active':''}" href="/blocks" th:text="#{nav.blocks}"></a>
+            <div class="nav-item dropdown">
+                <a th:text="#{lang}" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                <form id="langForm" name="form" action="#" method="get" >
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <input type="hidden" name="lang" id="app-lang" />
+                        <input type="submit" class="dropdown-item" onclick="document.getElementById('app-lang').setAttribute('value', 'pl')"
+                               th:value="#{lang.pl}"/>
+                        <input type="submit" class="dropdown-item" onclick="document.getElementById('app-lang').setAttribute('value', 'en')"
+                               th:value="#{lang.en}"/>
+                        <input type="submit" class="dropdown-item" onclick="document.getElementById('app-lang').setAttribute('value', 'de')"
+                               th:value="#{lang.de}"/>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </nav>

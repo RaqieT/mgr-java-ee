@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Blocks')"/>
+<head th:replace="fragments/header :: header(#{'nav.blocks'})"></head>
 <body>
-<nav th:replace="fragments/nav :: navbar('Blocks')" />
+<nav th:replace="fragments/nav :: navbar"></nav>
 <div class="container">
     <h3>Blocks</h3>
     <table class="table">
