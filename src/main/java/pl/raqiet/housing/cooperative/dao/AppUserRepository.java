@@ -13,4 +13,5 @@ import java.util.UUID;
 public interface AppUserRepository extends JpaRepository<AppUser, UUID> {
     List<AppUser> findAllByOrderByCreationTimeAsc();
     List<AppUser> findByLastName(String lastName);
+    AppUser findByUsername(String username);
 }

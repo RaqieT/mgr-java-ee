@@ -9,10 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -32,6 +29,11 @@ public class Spring5Configuration implements WebMvcConfigurer {
 
     public Spring5Configuration(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
     }
 
     /*
@@ -73,7 +75,7 @@ public class Spring5Configuration implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         var messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:/i18n/messages");
+        messageSource.setBasename("/static/i18n/messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
