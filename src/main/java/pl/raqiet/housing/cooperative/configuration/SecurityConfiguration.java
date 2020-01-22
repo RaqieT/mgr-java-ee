@@ -55,8 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login-error.html").permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .and()
                 .authorizeRequests().antMatchers("/static/**", "/register**").permitAll()
                 .anyRequest().authenticated();

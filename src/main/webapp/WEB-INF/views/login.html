@@ -26,10 +26,9 @@
                                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                                 <label for="password" th:text="#{login.password}"></label>
                             </div>
-
                             <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.sign_in}"></button>
                             <p th:if="${loginError}" class="error" th:text="#{login.wrong_username_or_password}"></p>
-                            <br/>
+                            <hr/>
                             <a class="btn btn-lg btn-primary btn-block" type="button" th:href="@{/register.html}" th:text="#{login.sign_up}"></a>
                         </form>
                     </div>
