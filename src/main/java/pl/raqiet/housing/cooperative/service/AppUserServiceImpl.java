@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.raqiet.housing.cooperative.api.service.AppUserService;
 import pl.raqiet.housing.cooperative.dao.AppUserRepository;
 import pl.raqiet.housing.cooperative.domain.AppUser;
+import pl.raqiet.housing.cooperative.domain.Role;
 import pl.raqiet.housing.cooperative.util.PasswordUtils;
 
 import java.util.List;
@@ -52,6 +53,12 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     @Override
     public AppUser getAppUserByUsername(String username) {
         return appUserRepository.findByUsername(username);
+    }
+
+    @Override
+    public void register(AppUser appUser) {
+        appUser.setRole(Role.LOCATOR);
+        addAppUser(appUser);
     }
 
     @Override

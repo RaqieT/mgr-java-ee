@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <title th:text="#{app.title}"></title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/login.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="app-title text-center" th:text="#{app.title}"></h5>
+                        <h5 class="card-title text-center" th:text="#{login.sign_up}"></h5>
+                        <form class="form-signin" th:action="@{/register}" method="post">
+                            <div class="form-label-group">
+                                <input type="text" id="firstName" name="firstName" class="form-control" th:placeholder="#{login.first_name}" required autofocus>
+                                <label for="firstName" th:text="#{login.first_name}"></label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="lastName" name="lastName" class="form-control" th:placeholder="#{login.last_name}" required>
+                                <label for="lastName" th:text="#{login.last_name}"></label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="email" name="email" class="form-control" th:placeholder="#{login.email}" required>
+                                <label for="email" th:text="#{login.email}"></label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="telephone" name="telephone" class="form-control" th:placeholder="#{login.telephone}" required>
+                                <label for="telephone" th:text="#{login.telephone}"></label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="username" name="username" class="form-control" th:placeholder="#{login.username}" required>
+                                <label for="username" th:text="#{login.username}"></label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="password" name="password" class="form-control" th:placeholder="#{login.password}" required>
+                                <label for="password" th:text="#{login.password}"></label>
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.sign_up}"></button>
+                            <p th:if="${registerError}" class="error" th:text="#{login.wrong_register_data}"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

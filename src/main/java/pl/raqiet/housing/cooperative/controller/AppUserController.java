@@ -27,7 +27,7 @@ public class AppUserController {
     public String showAppUsers(Model model) {
 
         model.addAttribute("appUserList", appUserService.listAppUser());
-        return "appUser";
+        return "appUser.html";
     }
 
     @RequestMapping(value = "/appUsers/manager")
@@ -39,29 +39,24 @@ public class AppUserController {
         } catch (ServletRequestBindingException e) {
             model.addAttribute("appUser", new AppUser());
         }
-        return "appUserManager";
+        return "appUserManager.html";
     }
 
     @RequestMapping(value = "/saveAppUser", method = RequestMethod.POST)
     public String saveAppUser(@ModelAttribute AppUser appUser) {
-
-        System.out.println("First Name: " + appUser.getFirstName() +
-                " Last Name: " + appUser.getLastName() + " Tel.: " +
-                appUser.getTelephone() + " Email: " + appUser.getEmail());
-
         if (appUser.getId() == null) {
             appUserService.addAppUser(appUser);
         } else {
             appUserService.editAppUser(appUser);
         }
 
-        return "redirect:appUsers.html";
+        return "redirect:/appUsers";
     }
 
     @RequestMapping("/appUsers/delete/{appUserId}")
     public String deleteUser(@PathVariable("appUserId") UUID id) {
         appUserService.removeAppUser(id);
-        return "redirect:/appUsers.html";
+        return "redirect:/appUsers";
     }
 }
 

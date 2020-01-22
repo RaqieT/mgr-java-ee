@@ -25,7 +25,7 @@ public class BlockController {
     @RequestMapping(value = "/blocks")
     public String showBlocks(Model model) {
         model.addAttribute("blockList", blockService.listAllBlocks());
-        return "block";
+        return "block.html";
     }
 
     @RequestMapping(value = "/blocks/manager")
@@ -40,7 +40,7 @@ public class BlockController {
         }
         model.addAttribute("block", block);
         model.addAttribute("flats", block.getFlats());
-        return "blockManager";
+        return "blockManager.html";
     }
 
     @RequestMapping(value = "/saveBlock", method = RequestMethod.POST)
@@ -52,12 +52,12 @@ public class BlockController {
             blockService.editBlock(block);
         }
 
-        return "redirect:blocks.html";
+        return "redirect:/blocks";
     }
 
     @RequestMapping("/blocks/delete/{blockId}")
     public String deleteBlock(@PathVariable("blockId") UUID id) {
         blockService.removeBlock(id);
-        return "redirect:/blocks.html";
+        return "redirect:/blocks";
     }
 }

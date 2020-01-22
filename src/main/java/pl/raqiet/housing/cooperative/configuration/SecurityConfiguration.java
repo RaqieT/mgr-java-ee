@@ -49,14 +49,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                 .and()
-                .formLogin().loginPage("/login.html")
+                .formLogin()
+                .loginPage("/login.html")
+                .defaultSuccessUrl("/", true)
                 .failureUrl("/login-error.html").permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
                 .and()
-                .authorizeRequests().antMatchers("/static/**").permitAll()
+                .authorizeRequests().antMatchers("/static/**", "/register**").permitAll()
                 .anyRequest().authenticated();
     }
 }

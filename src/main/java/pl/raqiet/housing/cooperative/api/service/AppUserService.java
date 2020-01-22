@@ -19,4 +19,5 @@ public interface AppUserService {
     AppUser getAppUser(UUID uuid);
     @Secured("ROLE_ADMINISTRATOR")
     AppUser getAppUserByUsername(String username);
+    void register(AppUser appUser);
 }
