@@ -9,10 +9,13 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div class="navbar-nav mr-auto">
             <a class="nav-item nav-link" th:classappend="${#request.requestURI == '/' ? 'active':''}" href="/" th:text="#{nav.home}"></a>
             <a sec:authorize="hasRole('ROLE_ADMINISTRATOR')" class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/appUsers') ? 'active':''}" href="/appUsers" th:text="#{nav.users}"></a>
             <a class="nav-item nav-link" th:classappend="${#request.requestURI.startsWith('/blocks') ? 'active':''}" href="/blocks" th:text="#{nav.blocks}"></a>
+        </div>
+        <div class="navbar-nav">
+            <div class="nav-item nav-link disabled"><span th:text="#{user}"></span>: <span sec:authentication="name">User</span></div>
             <div class="nav-item dropdown">
                 <a th:text="#{lang}" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                 <form id="langForm" name="form" action="#" method="get" >
@@ -27,6 +30,9 @@
                     </div>
                 </form>
             </div>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" class="nav-item nav-link" th:value="#{logout}"/>
+            </form>
         </div>
     </div>
 </nav>

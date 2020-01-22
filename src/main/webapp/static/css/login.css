@@ -33,12 +33,8 @@ body {
 }
 
 .form-signin .btn {
-    font-size: 80%;
-    border-radius: 5rem;
-    letter-spacing: .1rem;
-    font-weight: bold;
+    width: 100%;
     padding: 1rem;
-    transition: all 0.2s;
 }
 
 .form-label-group {
