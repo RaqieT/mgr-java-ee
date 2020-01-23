@@ -1,10 +1,9 @@
 package pl.raqiet.housing.cooperative.init;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.raqiet.housing.cooperative.api.service.AppUserService;
-import pl.raqiet.housing.cooperative.domain.AppUser;
-import pl.raqiet.housing.cooperative.domain.Role;
+import pl.raqiet.housing.cooperative.domain.entity.AppUser;
+import pl.raqiet.housing.cooperative.domain.entity.Role;
 import pl.raqiet.housing.cooperative.util.AdministratorCall;
 
 import javax.annotation.PostConstruct;

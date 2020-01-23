@@ -4,33 +4,51 @@
 <body>
 <nav th:replace="fragments/nav :: navbar"></nav>
 <div class="container">
-    <h3><span th:text="${appUser.id == null ? 'Create user' : 'Update user'}"></span></h3>
-    <form action="#" th:action="@{/saveAppUser}" th:object="${appUser}" method="post">
+    <h3><span th:text="#{${appUser.id == null ? 'user.create' : 'user.update'}} + ' ' + #{${appUser.role}}"></span></h3>
+    <form action="#" th:action="@{/appUsers/saveAppUser}" th:object="${appUser}" method="post">
 
         <table>
             <tr>
                 <td><input th:type="hidden" th:field="*{id}" path="id" /></td>
             </tr>
             <tr>
-                <td><label path="firstName">First Name</label></td>
+                <td><input th:type="hidden" th:field="*{role}" path="role"/></td>
+            </tr>
+            <tr>
+                <td><label path="username" th:text="#{username}"></label></td>
+                <td><input th:field="*{username}" path="username" /></td>
+            </tr>
+            <tr>
+                <td><label path="firstName" th:text="#{first_name}"></label></td>
                 <td><input th:field="*{firstName}" path="firstName" /></td>
             </tr>
             <tr>
-                <td><label path="lastName">Last Name</label></td>
+                <td><label path="lastName" th:text="#{last_name}"></label></td>
                 <td><input th:field="*{lastName}" path="lastName" /></td>
             </tr>
             <tr>
-                <td><label path="email">Email</label></td>
+                <td><label path="email" th:text="#{email}"></label></td>
                 <td><input th:field="*{email}" path="email" /></td>
             </tr>
             <tr>
-                <td><label path="telephone">Telephone</label></td>
+                <td><label path="telephone" th:text="#{telephone}"></label></td>
                 <td><input th:field="*{telephone}" path="telephone" /></td>
+            </tr>
+            <tr th:if="${appUser.role.name() == 'MODERATOR'}">
+                <td><label path="role" th:text="#{nav.blocks}"></label></td>
+                <td>
+                    <select th:name="blocks" class="form-control" th:field="*{blocks}" multiple="multiple">
+                        <option th:each="block : ${availableBlocks}"
+                                th:field="*{blocks}"
+                                th:value="${block.id}"
+                                th:text="${block.address}" th:selected="${availableBlocks.contains(block)}"></option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <input class="btn" th:classappend="${appUser.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="${appUser.id == null ? 'Create' : 'Save'}" />
-                    <a class="btn btn-secondary" href="/appUsers">Back</a>
+                    <input class="btn" th:classappend="${appUser.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="#{${appUser.id == null ? 'user.create' : 'user.update'}}" />
+                    <a class="btn btn-secondary" href="/appUsers" th:text="#{back}"></a>
                 </td>
             </tr>
         </table>

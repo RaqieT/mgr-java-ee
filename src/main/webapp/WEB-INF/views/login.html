@@ -19,12 +19,12 @@
                         <form class="form-signin" th:action="@{/login.html}" method="post">
                             <div class="form-label-group">
                                 <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
-                                <label for="username" th:text="#{login.username}"></label>
+                                <label for="username" th:text="#{username}"></label>
                             </div>
 
                             <div class="form-label-group">
                                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-                                <label for="password" th:text="#{login.password}"></label>
+                                <label for="password" th:text="#{password}"></label>
                             </div>
                             <button class="btn btn-primary" type="submit" th:text="#{login.sign_in}"></button>
                             <p th:if="${loginError}" class="error" th:text="#{login.wrong_username_or_password}"></p>

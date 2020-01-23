@@ -2,7 +2,6 @@ package pl.raqiet.housing.cooperative.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,7 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import pl.raqiet.housing.cooperative.api.service.AppUserService;
 import pl.raqiet.housing.cooperative.api.service.ReCaptchaService;
-import pl.raqiet.housing.cooperative.domain.AppUser;
+import pl.raqiet.housing.cooperative.domain.entity.AppUser;
 
 import javax.servlet.http.HttpServletRequest;
 

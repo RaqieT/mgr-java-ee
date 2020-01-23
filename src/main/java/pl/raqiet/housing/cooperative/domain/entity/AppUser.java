@@ -1,8 +1,6 @@
-package pl.raqiet.housing.cooperative.domain;
+package pl.raqiet.housing.cooperative.domain.entity;
 
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -31,8 +29,16 @@ public class AppUser extends BaseEntity implements UserDetails {
     @Column(nullable = false)
     private Role role;
 
-    @ManyToMany(mappedBy = "managers")
-    private Set<Block> blocks = new HashSet<>();
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "moderator_block",
+            joinColumns = @JoinColumn(name = "moderator_id"),
+            inverseJoinColumns = @JoinColumn(name = "block_id")
+    )
+    private Set<Block> blocks = new HashSet<>(); // MODERATOR_ONLY
+
+    @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY)
+    private Flat flat;
 
     @Override
     public Collection<Role> getAuthorities() {

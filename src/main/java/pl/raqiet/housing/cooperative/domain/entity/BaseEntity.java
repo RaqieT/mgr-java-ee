@@ -1,4 +1,4 @@
-package pl.raqiet.housing.cooperative.domain;
+package pl.raqiet.housing.cooperative.domain.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.UUID;
 
 @Data

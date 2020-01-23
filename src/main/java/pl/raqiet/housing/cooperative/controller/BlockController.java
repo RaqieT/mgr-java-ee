@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.raqiet.housing.cooperative.api.service.BlockService;
-import pl.raqiet.housing.cooperative.domain.Block;
+import pl.raqiet.housing.cooperative.domain.entity.Block;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;

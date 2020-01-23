@@ -7,24 +7,29 @@
     <h3>User list</h3>
     <table class="table">
         <tr>
-            <th scope="col">First name</th>
-            <th scope="col">Last name</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">Telephone</th>
-            <th scope="col">Control</th>
+            <th scope="col" th:text="#{first_name}"></th>
+            <th scope="col" th:text="#{last_name}"></th>
+            <th scope="col" th:text="#{email}"></th>
+            <th scope="col" th:text="#{telephone}"></th>
+            <th scope="col" th:text="#{role}"></th>
+            <th scope="col" th:text="#{actions}"></th>
         </tr>
         <tr th:each="user : ${appUserList}">
             <td th:text="${user.firstName}"/>
             <td th:text="${user.lastName}"/>
             <td th:text="${user.email}"/>
             <td th:text="${user.telephone}"/>
+            <td th:text="#{${user.role}}"/>
             <td>
-                <a class="btn btn-primary" th:href="@{appUsers/manager(appUserId=${user.id})}">Modify</a>
-                <a class="btn btn-danger" th:href="${'appUsers/delete/' + user.id}">Remove</a>
+                <a class="btn btn-primary" th:href="@{appUsers/manager(appUserId=${user.id})}" th:text="#{user.update}"></a>
+                <a class="btn btn-danger" th:href="${'appUsers/delete/' + user.id}" th:text="#{user.delete}"></a>
             </td>
         </tr>
     </table>
-    <a class="btn btn-success" th:href="@{appUsers/manager}">Create</a>
+    <div th:each="role : ${roles}">
+        <a class="btn btn-success" style="margin-bottom: 1rem" th:href="@{appUsers/manager(userType=${role})}" th:text="#{user.create} + ' ' + #{${role}}"></a>
+        <br/>
+    </div>
 </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package pl.raqiet.housing.cooperative.domain;
+package pl.raqiet.housing.cooperative.domain.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -9,6 +9,6 @@ public enum Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return ROLE_PREFIX + this.name();
+        return ROLE_PREFIX + toString();
     }
 }
