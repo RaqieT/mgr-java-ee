@@ -1,6 +1,10 @@
 package pl.raqiet.housing.cooperative.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestBindingException;
@@ -86,5 +90,15 @@ public class BillController {
     public String deleteBill(@PathVariable("billId") UUID id) {
         billService.removeBill(id);
         return "redirect:/bills";
+    }
+
+    @RequestMapping(value = "/bills/{id}/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> getBillPdf(@PathVariable("id") UUID billId) {
+        byte[] myBillPdf = billService.getBillPdf(billId);
+        HttpHeaders headers = new HttpHeaders();
+        String filename = System.currentTimeMillis() + ".pdf";
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        return new ResponseEntity<>(myBillPdf, headers, HttpStatus.OK);
     }
 }

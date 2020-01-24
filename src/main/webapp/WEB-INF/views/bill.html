@@ -23,7 +23,7 @@
             <th scope="col" th:text="#{flat}"></th>
             <th scope="col" th:text="#{register.time}"></th>
             <th scope="col" th:text="#{approved}"></th>
-            <th scope="col" th:text="#{actions}" sec:authorize="hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_MODERATOR')"></th>
+            <th scope="col" th:text="#{actions}"></th>
         </tr>
         <tr th:each="bill : ${billList}">
             <td th:text="${bill.gasUsage}"/>
@@ -32,10 +32,11 @@
             <td th:text=" ${bill.flat.block.address} + '/' + ${bill.flat.number}"/>
             <td th:text="${bill.registerTime}"/>
             <td th:text="#{${bill.approved}}"/>
-            <td sec:authorize="hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_MODERATOR')">
-                <a class="btn btn-primary" th:href="@{bills/manager(billId=${bill.id})}" th:text="#{modify}"></a>
-                <a class="btn btn-primary" th:href="@{bills/approve(billId=${bill.id})}" th:text="#{approve}"></a>
-                <a class="btn btn-danger" th:href="${'bills/delete/' + bill.id}" th:text="#{remove}"></a>
+            <td>
+                <a th:if="${bill.approved}" class="btn btn-primary" th:href="${'bills/' + bill.id + '/pdf'}" th:text="PDF"></a>
+                <a sec:authorize="hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_MODERATOR')" class="btn btn-primary" th:href="@{bills/manager(billId=${bill.id})}" th:text="#{modify}"></a>
+                <a sec:authorize="hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_MODERATOR')" class="btn btn-primary" th:href="@{bills/approve(billId=${bill.id})}" th:text="#{approve}"></a>
+                <a sec:authorize="hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_MODERATOR')" class="btn btn-danger" th:href="${'bills/delete/' + bill.id}" th:text="#{remove}"></a>
             </td>
         </tr>
     </table>

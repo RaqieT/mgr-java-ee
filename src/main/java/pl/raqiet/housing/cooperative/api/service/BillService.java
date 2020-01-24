@@ -23,4 +23,6 @@ public interface BillService {
     Bill getCurrentLocatorBill();
     @Secured({"ROLE_ADMINISTRATOR", "ROLE_MODERATOR"})
     void removeBill(UUID billId);
+
+    byte[] getBillPdf(UUID id);
 }

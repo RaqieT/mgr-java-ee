@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.raqiet.housing.cooperative.api.service.AppUserService;
 import pl.raqiet.housing.cooperative.api.service.BillService;
 import pl.raqiet.housing.cooperative.api.service.FlatService;
+import pl.raqiet.housing.cooperative.api.service.PdfService;
 import pl.raqiet.housing.cooperative.dao.BillRepository;
 import pl.raqiet.housing.cooperative.domain.entity.AppUser;
 import pl.raqiet.housing.cooperative.domain.entity.Bill;
@@ -23,6 +25,8 @@ import java.util.UUID;
 public class BillServiceImpl implements BillService {
     private final BillRepository billRepository;
     private final FlatService flatService;
+    private final PdfService pdfService;
+    private final AppUserService appUserService;
 
     @Override
     public void addLoggedInUserFlatBill(Bill bill) {
@@ -69,16 +73,16 @@ public class BillServiceImpl implements BillService {
     @Override
     public List<Bill> listAllBills() {
         if (AuthUtils.isLoggedInUserInRole(Role.ADMINISTRATOR)) {
-            return billRepository.findAllByOrderByRegisterTimeAsc();
+            return billRepository.findAllByOrderByRegisterTimeDesc();
         }
 
         if (AuthUtils.isLoggedInUserInRole(Role.MODERATOR)) {
             return billRepository
-                    .findAllByFlatBlockModeratorsContainingUserWithUsernameOrderByRegisterTimeAsc(AuthUtils.getLoggedInUserUsername());
+                    .findAllByFlatBlockModeratorsContainingUserWithUsernameOrderByRegisterTimeDesc(AuthUtils.getLoggedInUserUsername());
         }
 
         if (AuthUtils.isLoggedInUserInRole(Role.LOCATOR)) {
-            return billRepository.findAllByFlatOwnerUsernameOrderByRegisterTimeAsc(AuthUtils.getLoggedInUserUsername());
+            return billRepository.findAllByFlatOwnerUsernameOrderByRegisterTimeDesc(AuthUtils.getLoggedInUserUsername());
         }
 
         throw new AccessDeniedException("No access");
@@ -143,5 +147,15 @@ public class BillServiceImpl implements BillService {
     public void removeBill(UUID billId) {
         Bill bill = getBill(billId);
         billRepository.delete(bill);
+    }
+
+    @Override
+    public byte[] getBillPdf(UUID id) {
+        Bill bill = getBill(id);
+        if (!bill.isApproved()) {
+            throw new AccessDeniedException("Bill is not approved");
+        }
+        AppUser me = appUserService.getMe();
+        return pdfService.generateBillPdf(bill, me);
     }
 }

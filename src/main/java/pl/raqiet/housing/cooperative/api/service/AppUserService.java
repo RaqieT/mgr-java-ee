@@ -24,5 +24,7 @@ public interface AppUserService {
     List<AppUser> listLocatorsWithoutFlat();
     @Secured({"ROLE_ADMINISTRATOR", "ROLE_MODERATOR"})
     List<AppUser> listLocatorsWithoutFlatAndFlatOwner(UUID flatOwner);
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_MODERATOR", "ROLE_LOCATOR"})
+    AppUser getMe();
     void register(AppUser appUser);
 }

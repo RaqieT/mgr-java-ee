@@ -89,6 +89,11 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
+    public AppUser getMe() {
+        return getAppUserByUsername(AuthUtils.getLoggedInUserUsername());
+    }
+
+    @Override
     public void register(AppUser appUser) {
         appUser.setRole(Role.LOCATOR);
         addAppUser(appUser);

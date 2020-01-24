@@ -38,11 +38,11 @@ public class Bill extends BaseEntity {
         return gasUsage * Const.ReadingsPrices.GAS_LITER_PRICE;
     }
 
-    public double getPowerUsage() {
+    public double getPowerPrice() {
         return powerUsage * Const.ReadingsPrices.POWER_KWH_PRICE;
     }
 
-    public double getWaterUsage() {
+    public double getWaterPrice() {
         return waterUsage * Const.ReadingsPrices.WATER_LITER_PRICE;
 
     }
