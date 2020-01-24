@@ -1,5 +1,6 @@
 package pl.raqiet.housing.cooperative.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,9 +21,11 @@ public abstract class BaseEntity {
 
     @Column(name = "created_date", updatable=false)
     @CreationTimestamp
+    @JsonIgnore
     private LocalDateTime creationTime;
 
     @Column(name = "modified_date")
     @UpdateTimestamp
+    @JsonIgnore
     private LocalDateTime modifiedDate;
 }

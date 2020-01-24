@@ -1,5 +1,6 @@
 package pl.raqiet.housing.cooperative.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import pl.raqiet.housing.cooperative.domain.Const;

@@ -1,5 +1,6 @@
 package pl.raqiet.housing.cooperative.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -36,11 +37,13 @@ public class AppUser extends BaseEntity implements UserDetails {
             joinColumns = @JoinColumn(name = "moderator_id"),
             inverseJoinColumns = @JoinColumn(name = "block_id")
     )
+    @JsonIgnore
     private Set<Block> blocks = new HashSet<>(); // MODERATOR_ONLY
 
     @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private Flat flat;
 
     @Override
