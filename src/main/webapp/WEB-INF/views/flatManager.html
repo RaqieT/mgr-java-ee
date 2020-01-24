@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header(#{'nav.flats'})"></head>
+<body>
+<nav th:replace="fragments/nav :: navbar"></nav>
+<div class="container">
+    <h3><span th:text="#{${flat.id == null ? 'create' : 'update '}} + ' ' + ${flat.id != null ? flat.block.address + '/' + flat.number : ''}"></span></h3>
+    <form action="#" th:action="@{/flats/save}" th:object="${flat}" method="post">
+
+        <table>
+            <tr>
+                <td><input th:type="hidden" th:field="*{id}"/></td>
+            </tr>
+            <tr>
+                <td><label th:text="#{number}"></label></td>
+                <td><input th:field="*{number}"/></td>
+            </tr>
+            <tr>
+                <td><label th:text="#{block}"></label></td>
+                <td>
+                    <select th:name="blocks" class="form-control" th:field="*{block}">
+                        <option th:each="someBlock : ${availableBlocks}"
+                                th:field="*{block}"
+                                th:value="${someBlock.id}"
+                                th:text="${someBlock.address}" th:selected="${availableBlocks.contains(block)}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label th:text="#{user}"></label></td>
+                <td>
+                    <select th:name="users" class="form-control" th:field="*{owner}">
+                        <option th:each="someUser : ${availableUsers}"
+                                th:field="*{owner}"
+                                th:value="${someUser.id}"
+                                th:text="${someUser.firstName} + ' ' + ${someUser.lastName}" th:selected="${flat.owner != null ? flat.owner.id == someUser.id : false}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input class="btn" th:classappend="${flat.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="#{${flat.id == null ? 'create' : 'update'}}" />
+                    <a class="btn btn-secondary" href="/flats" th:text="#{back}"></a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

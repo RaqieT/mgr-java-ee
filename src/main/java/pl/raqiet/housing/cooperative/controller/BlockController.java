@@ -39,11 +39,10 @@ public class BlockController {
             block = new Block();
         }
         model.addAttribute("block", block);
-        model.addAttribute("flats", block.getFlats());
         return "blockManager.html";
     }
 
-    @RequestMapping(value = "/saveBlock", method = RequestMethod.POST)
+    @RequestMapping(value = "/blocks/save", method = RequestMethod.POST)
     public String saveBlock(@ModelAttribute Block block) {
 
         if (block.getId() == null) {

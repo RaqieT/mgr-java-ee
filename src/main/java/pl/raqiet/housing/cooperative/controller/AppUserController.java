@@ -62,7 +62,7 @@ public class AppUserController {
         return "appUserManager.html";
     }
 
-    @RequestMapping(value = "/appUsers/saveAppUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/appUsers/save", method = RequestMethod.POST)
     public String saveAppUser(@ModelAttribute AppUser appUser) {
         if (appUser.getId() == null) {
             appUserService.addAppUser(appUser);

@@ -5,7 +5,7 @@
 <nav th:replace="fragments/nav :: navbar"></nav>
 <div class="container">
     <h3><span th:text="${block.id == null ? 'Create block' : 'Block ' + block.address}"></span></h3>
-    <form action="#" th:action="@{/saveBlock}" th:object="${block}" method="post">
+    <form action="#" th:action="@{/blocks/save}" th:object="${block}" method="post">
 
         <table>
             <tr>
@@ -17,8 +17,8 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input class="btn" th:classappend="${block.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="${block.id == null ? 'Create' : 'Save'}" />
-                    <a class="btn btn-secondary" href="/blocks">Back</a>
+                    <input class="btn" th:classappend="${block.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="#{${block.id == null ? 'create' : 'update'}}" />
+                    <a class="btn btn-secondary" href="/blocks" th:text="#{back}"></a>
                 </td>
             </tr>
         </table>

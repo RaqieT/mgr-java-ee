@@ -38,6 +38,7 @@ public class AppUser extends BaseEntity implements UserDetails {
     private Set<Block> blocks = new HashSet<>(); // MODERATOR_ONLY
 
     @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Flat flat;
 
     @Override

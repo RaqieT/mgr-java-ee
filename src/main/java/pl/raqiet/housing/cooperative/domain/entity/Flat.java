@@ -16,7 +16,7 @@ public class Flat extends BaseEntity {
     private Block block;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private AppUser owner;
 
     private int number;

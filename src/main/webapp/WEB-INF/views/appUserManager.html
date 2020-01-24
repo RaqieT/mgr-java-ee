@@ -5,7 +5,7 @@
 <nav th:replace="fragments/nav :: navbar"></nav>
 <div class="container">
     <h3><span th:text="#{${appUser.id == null ? 'user.create' : 'user.update'}} + ' ' + #{${appUser.role}}"></span></h3>
-    <form action="#" th:action="@{/appUsers/saveAppUser}" th:object="${appUser}" method="post">
+    <form action="#" th:action="@{/appUsers/save}" th:object="${appUser}" method="post">
 
         <table>
             <tr>
@@ -17,6 +17,10 @@
             <tr>
                 <td><label path="username" th:text="#{username}"></label></td>
                 <td><input th:field="*{username}" path="username" /></td>
+            </tr>
+            <tr>
+                <td><label path="password" th:text="#{password}"></label></td>
+                <td><input type="password" th:field="*{password}" path="password" /></td>
             </tr>
             <tr>
                 <td><label path="firstName" th:text="#{first_name}"></label></td>
@@ -41,7 +45,7 @@
                         <option th:each="block : ${availableBlocks}"
                                 th:field="*{blocks}"
                                 th:value="${block.id}"
-                                th:text="${block.address}" th:selected="${availableBlocks.contains(block)}"></option>
+                                th:text="${block.address}" th:selected="${appUser.blocks.contains(block)}"></option>
                     </select>
                 </td>
             </tr>

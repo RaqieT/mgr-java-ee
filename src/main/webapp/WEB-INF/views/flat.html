@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header(#{'nav.flats'})"></head>
+<body>
+<nav th:replace="fragments/nav :: navbar"></nav>
+<div class="container">
+    <h3 th:text="#{nav.flats}"></h3>
+    <table class="table">
+        <tr>
+            <th scope="col" th:text="#{address}"></th>
+            <th scope="col" th:text="#{actions}"></th>
+        </tr>
+        <tr th:each="flat : ${flatList}">
+            <td th:text="${flat.block.address} + '/' + ${flat.number}"/>
+            <td>
+                <a class="btn btn-primary" th:href="@{flats/manager(flatId=${flat.id})}" th:text="#{modify}"></a>
+                <a class="btn btn-danger" th:href="${'flats/delete/' + flat.id}" th:text="#{remove}"></a>
+            </td>
+        </tr>
+    </table>
+    <a class="btn btn-success" th:href="@{flats/manager}" th:text="#{create}"></a>
+</div>
+</body>
+</html>

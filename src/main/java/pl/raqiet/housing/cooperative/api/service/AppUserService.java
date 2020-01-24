@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AppUserService {
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR"})
     void addAppUser(AppUser appUser);
     @Secured("ROLE_ADMINISTRATOR")
     void editAppUser(AppUser appUser);
@@ -16,11 +16,13 @@ public interface AppUserService {
     List<AppUser> listAppUser();
     @Secured("ROLE_ADMINISTRATOR")
     void removeAppUser(UUID uuid);
-    @Secured("ROLE_ADMINISTRATOR")
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_MODERATOR"})
     AppUser getAppUser(UUID uuid);
     @Secured("ROLE_ADMINISTRATOR")
     AppUser getAppUserByUsername(String username);
     @Secured("ROLE_ADMINISTRATOR")
     List<AppUser> listModerators();
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_MODERATOR"})
+    List<AppUser> listLocators();
     void register(AppUser appUser);
 }

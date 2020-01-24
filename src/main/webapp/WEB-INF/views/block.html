@@ -4,21 +4,21 @@
 <body>
 <nav th:replace="fragments/nav :: navbar"></nav>
 <div class="container">
-    <h3>Blocks</h3>
+    <h3 th:text="#{nav.blocks}"></h3>
     <table class="table">
         <tr>
-            <th scope="col">Address</th>
-            <th scope="col">Control</th>
+            <th scope="col" th:text="#{address}"></th>
+            <th scope="col" th:text="#{actions}"></th>
         </tr>
         <tr th:each="block : ${blockList}">
             <td th:text="${block.address}"/>
             <td>
-                <a class="btn btn-primary" th:href="@{blocks/manager(blockId=${block.id})}">Go to</a>
-                <a class="btn btn-danger" th:href="${'blocks/delete/' + block.id}">Remove</a>
+                <a class="btn btn-primary" th:href="@{blocks/manager(blockId=${block.id})}" th:text="#{modify}"></a>
+                <a class="btn btn-danger" th:href="${'blocks/delete/' + block.id}" th:text="#{remove}"></a>
             </td>
         </tr>
     </table>
-    <a class="btn btn-success" th:href="@{blocks/manager}">Create</a>
+    <a class="btn btn-success" th:href="@{blocks/manager}" th:text="#{create}"></a>
 </div>
 </body>
 </html>

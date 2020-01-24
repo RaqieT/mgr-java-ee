@@ -1,9 +1,6 @@
 package pl.raqiet.housing.cooperative.domain.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -17,10 +14,13 @@ public class Block extends BaseEntity {
     @Column(unique = true)
     private String address;
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+
     @ManyToMany(mappedBy = "blocks", fetch = FetchType.LAZY)
     private Set<AppUser> moderators = new HashSet<>();
     @OneToMany(mappedBy = "block", fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Set<Flat> flats = new HashSet<>();
 
     @Override
