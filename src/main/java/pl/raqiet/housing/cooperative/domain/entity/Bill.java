@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import pl.raqiet.housing.cooperative.domain.Const;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -20,6 +21,17 @@ public class Bill extends BaseEntity {
     private double gasUsage; // liter
     private double powerUsage; // kWh
     private double waterUsage; // liter
+
+    private LocalDateTime registerTime;
+
+    @PrePersist
+    @PreUpdate
+    public void prePersist() {
+        if (registerTime == null) {
+            registerTime = LocalDateTime.now();
+        }
+    }
+
 
     public double getGasPrice() {
         return gasUsage * Const.ReadingsPrices.GAS_LITER_PRICE;

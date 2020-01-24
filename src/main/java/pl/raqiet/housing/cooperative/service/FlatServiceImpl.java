@@ -11,6 +11,9 @@ import pl.raqiet.housing.cooperative.domain.entity.Flat;
 import pl.raqiet.housing.cooperative.domain.entity.Role;
 import pl.raqiet.housing.cooperative.util.AuthUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -97,5 +100,13 @@ public class FlatServiceImpl implements FlatService {
     @Override
     public Flat getFlatOfLoggedInUser() {
         return flatRepository.findByOwnerUsername(AuthUtils.getLoggedInUserUsername());
+    }
+
+    @Override
+    public List<Flat> getNotBilledFlatsOfPreviousMonth() {
+        LocalDate prevMonth = LocalDate.now().minusMonths(1);
+        LocalDateTime start = prevMonth.withDayOfMonth(1).atStartOfDay();
+        LocalDateTime end = prevMonth.withDayOfMonth(prevMonth.lengthOfMonth()).atTime(LocalTime.MAX);
+        return flatRepository.findAllByBillsRegisterTimeNotBetweenAndOwnerNotNull(start, end);
     }
 }

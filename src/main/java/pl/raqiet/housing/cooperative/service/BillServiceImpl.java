@@ -13,9 +13,7 @@ import pl.raqiet.housing.cooperative.domain.entity.Flat;
 import pl.raqiet.housing.cooperative.domain.entity.Role;
 import pl.raqiet.housing.cooperative.util.AuthUtils;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +32,11 @@ public class BillServiceImpl implements BillService {
             return;
         }
         bill.setFlat(flat);
+        billRepository.save(bill);
+    }
+
+    @Override
+    public void addBill(Bill bill) {
         billRepository.save(bill);
     }
 
@@ -66,16 +69,16 @@ public class BillServiceImpl implements BillService {
     @Override
     public List<Bill> listAllBills() {
         if (AuthUtils.isLoggedInUserInRole(Role.ADMINISTRATOR)) {
-            return billRepository.findAllByOrderByCreationTimeAsc();
+            return billRepository.findAllByOrderByRegisterTimeAsc();
         }
 
         if (AuthUtils.isLoggedInUserInRole(Role.MODERATOR)) {
             return billRepository
-                    .findAllByFlatBlockModeratorsContainingUserWithUsernameOrderByCreationTimeAsc(AuthUtils.getLoggedInUserUsername());
+                    .findAllByFlatBlockModeratorsContainingUserWithUsernameOrderByRegisterTimeAsc(AuthUtils.getLoggedInUserUsername());
         }
 
         if (AuthUtils.isLoggedInUserInRole(Role.LOCATOR)) {
-            return billRepository.findAllByFlatOwnerUsernameOrderByCreationTimeAsc(AuthUtils.getLoggedInUserUsername());
+            return billRepository.findAllByFlatOwnerUsernameOrderByRegisterTimeAsc(AuthUtils.getLoggedInUserUsername());
         }
 
         throw new AccessDeniedException("No access");
@@ -133,7 +136,12 @@ public class BillServiceImpl implements BillService {
     @Override
     public Bill getCurrentLocatorBill() {
         String loggedInUserUsername = AuthUtils.getLoggedInUserUsername();
-        Bill byFlatOwnerUsernameAndCreationTimeIsAfter = billRepository.findByFlatOwnerUsernameAndCreationTimeIsAfter(loggedInUserUsername, LocalDate.now().withDayOfMonth(1).atStartOfDay());
-        return byFlatOwnerUsernameAndCreationTimeIsAfter;
+        return billRepository.findByFlatOwnerUsernameAndRegisterTimeIsAfter(loggedInUserUsername, LocalDate.now().withDayOfMonth(1).atStartOfDay());
+    }
+
+    @Override
+    public void removeBill(UUID billId) {
+        Bill bill = getBill(billId);
+        billRepository.delete(bill);
     }
 }

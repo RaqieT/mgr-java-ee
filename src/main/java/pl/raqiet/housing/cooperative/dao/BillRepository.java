@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.UUID;
 
 public interface BillRepository extends JpaRepository<Bill, UUID> {
-    List<Bill> findAllByOrderByCreationTimeAsc();
+    List<Bill> findAllByOrderByRegisterTimeAsc();
     @Query("select bi from Bill bi " +
             "join fetch bi.flat f " +
             "join fetch f.block b " +
             "join fetch b.moderators m " +
             "where m.username = :username " +
-            "order by bi.creationTime asc")
-    List<Bill> findAllByFlatBlockModeratorsContainingUserWithUsernameOrderByCreationTimeAsc(@Param("username") String username);
-    List<Bill> findAllByFlatOwnerUsernameOrderByCreationTimeAsc(String username);
-    Bill findByFlatOwnerUsernameAndCreationTimeIsAfter(String username, LocalDateTime time);
+            "order by bi.registerTime asc")
+    List<Bill> findAllByFlatBlockModeratorsContainingUserWithUsernameOrderByRegisterTimeAsc(@Param("username") String username);
+    List<Bill> findAllByFlatOwnerUsernameOrderByRegisterTimeAsc(String username);
+    Bill findByFlatOwnerUsernameAndRegisterTimeIsAfter(String username, LocalDateTime time);
 }

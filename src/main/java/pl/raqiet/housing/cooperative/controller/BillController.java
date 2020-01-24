@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.raqiet.housing.cooperative.api.service.BillService;
@@ -77,6 +78,12 @@ public class BillController {
             return "redirect:/bills";
         }
         billService.toggleApprove(UUID.fromString(billId));
+        return "redirect:/bills";
+    }
+
+    @RequestMapping("/bills/delete/{billId}")
+    public String deleteBill(@PathVariable("billId") UUID id) {
+        billService.removeBill(id);
         return "redirect:/bills";
     }
 }

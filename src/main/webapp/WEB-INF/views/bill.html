@@ -21,7 +21,7 @@
             <th scope="col" th:text="#{power.usage}"></th>
             <th scope="col" th:text="#{water.usage}"></th>
             <th scope="col" th:text="#{flat}"></th>
-            <th scope="col" th:text="#{creation.time}"></th>
+            <th scope="col" th:text="#{register.time}"></th>
             <th scope="col" th:text="#{approved}"></th>
             <th scope="col" th:text="#{actions}" sec:authorize="hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_MODERATOR')"></th>
         </tr>
@@ -30,11 +30,12 @@
             <td th:text="${bill.powerUsage}"/>
             <td th:text="${bill.waterUsage}"/>
             <td th:text=" ${bill.flat.block.address} + '/' + ${bill.flat.number}"/>
-            <td th:text="${bill.creationTime}"/>
+            <td th:text="${bill.registerTime}"/>
             <td th:text="#{${bill.approved}}"/>
             <td sec:authorize="hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_MODERATOR')">
                 <a class="btn btn-primary" th:href="@{bills/manager(billId=${bill.id})}" th:text="#{modify}"></a>
                 <a class="btn btn-primary" th:href="@{bills/approve(billId=${bill.id})}" th:text="#{approve}"></a>
+                <a class="btn btn-danger" th:href="${'bills/delete/' + bill.id}" th:text="#{remove}"></a>
             </td>
         </tr>
     </table>

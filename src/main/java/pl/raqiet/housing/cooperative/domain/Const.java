@@ -11,9 +11,18 @@ public class Const {
                 Double::parseDouble).orElse(1d);
         public static final double GAS_LITER_PRICE = getEnv("housing.cooperative.gas.liter.price",
                 Double::parseDouble).orElse(1d);
-        public static final double POWER_KWH_PRICE = getEnv("housing.cooperative.gas.liter.price",
+        public static final double POWER_KWH_PRICE = getEnv("housing.cooperative.power.kwh.price",
                 Double::parseDouble).orElse(1d);
 
+    }
+
+    public static class ReadingsDefaultValues {
+        public static final double WATER_VALUE = getEnv("housing.cooperative.water.default.value",
+                Double::parseDouble).orElse(10d);
+        public static final double GAS_VALUE = getEnv("housing.cooperative.gas.default.value",
+                Double::parseDouble).orElse(10d);
+        public static final double POWER_VALUE = getEnv("housing.cooperative.power.default.value",
+                Double::parseDouble).orElse(1d);
     }
 
     private static <T> Optional<T> getEnv(String key, Function<String, T> stringParser) {

@@ -10,6 +10,7 @@ import java.util.UUID;
 public interface BillService {
     @Secured({"ROLE_LOCATOR"})
     void addLoggedInUserFlatBill(Bill bill);
+    void addBill(Bill bill);
     @Secured({"ROLE_LOCATOR","ROLE_ADMINISTRATOR", "ROLE_MODERATOR"})
     void editBill(Bill bill);
     @Secured({"ROLE_ADMINISTRATOR", "ROLE_MODERATOR", "ROLE_LOCATOR"})
@@ -20,4 +21,6 @@ public interface BillService {
     void toggleApprove(UUID billId);
     @Secured("ROLE_LOCATOR")
     Bill getCurrentLocatorBill();
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_MODERATOR"})
+    void removeBill(UUID billId);
 }
