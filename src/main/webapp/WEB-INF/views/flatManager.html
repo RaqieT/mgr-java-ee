@@ -4,7 +4,7 @@
 <body>
 <nav th:replace="fragments/nav :: navbar"></nav>
 <div class="container">
-    <h3><span th:text="#{${flat.id == null ? 'create' : 'update '}} + ' ' + ${flat.id != null ? flat.block.address + '/' + flat.number : ''}"></span></h3>
+    <h3><span th:text="#{${flat.id == null ? 'create' : 'modify'}} + ' ' + ${flat.id != null ? flat.block.address + '/' + flat.number : ''}"></span></h3>
     <form action="#" th:action="@{/flats/save}" th:object="${flat}" method="post">
 
         <table>
@@ -30,6 +30,7 @@
                 <td><label th:text="#{user}"></label></td>
                 <td>
                     <select th:name="users" class="form-control" th:field="*{owner}">
+                        <option th:field="*{owner}" th:value="${''}" th:text="#{none}" th:selected="${flat.owner == null}"></option>
                         <option th:each="someUser : ${availableUsers}"
                                 th:field="*{owner}"
                                 th:value="${someUser.id}"
@@ -39,7 +40,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input class="btn" th:classappend="${flat.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="#{${flat.id == null ? 'create' : 'update'}}" />
+                    <input class="btn" th:classappend="${flat.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="#{${flat.id == null ? 'create' : 'modify'}}" />
                     <a class="btn btn-secondary" href="/flats" th:text="#{back}"></a>
                 </td>
             </tr>

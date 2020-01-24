@@ -93,4 +93,9 @@ public class FlatServiceImpl implements FlatService {
 
         throw new AccessDeniedException("No access to this flat");
     }
+
+    @Override
+    public Flat getFlatOfLoggedInUser() {
+        return flatRepository.findByOwnerUsername(AuthUtils.getLoggedInUserUsername());
+    }
 }

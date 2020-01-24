@@ -30,6 +30,7 @@ public class AppUser extends BaseEntity implements UserDetails {
     private Role role;
 
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "moderator_block",
             joinColumns = @JoinColumn(name = "moderator_id"),
@@ -39,6 +40,7 @@ public class AppUser extends BaseEntity implements UserDetails {
 
     @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY)
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Flat flat;
 
     @Override

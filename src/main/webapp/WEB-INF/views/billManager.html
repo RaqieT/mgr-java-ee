@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header(#{'nav.bills'})"></head>
+<body>
+<nav th:replace="fragments/nav :: navbar"></nav>
+<div class="container">
+    <h3><span th:text="#{${bill.id == null ? 'create' : 'modify'}}"></span></h3>
+    <form action="#" th:action="@{/bills/save}" th:object="${bill}" method="post">
+
+        <table>
+            <tr>
+                <td><input th:type="hidden" th:field="*{id}"/></td>
+            </tr>
+            <tr>
+                <td><label th:text="#{gas.usage}"></label></td>
+                <td><input th:field="*{gasUsage}"/></td>
+            </tr>
+            <tr>
+                <td><label th:text="#{power.usage}"></label></td>
+                <td><input th:field="*{powerUsage}"/></td>
+            </tr>
+            <tr>
+                <td><label th:text="#{water.usage}"></label></td>
+                <td><input th:field="*{waterUsage}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input class="btn" th:classappend="${bill.id == null ? 'btn-success' : 'btn-primary'}" type="submit" th:value="#{${bill.id == null ? 'create' : 'modify'}}" />
+                    <a class="btn btn-secondary" href="/bills" th:text="#{back}"></a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

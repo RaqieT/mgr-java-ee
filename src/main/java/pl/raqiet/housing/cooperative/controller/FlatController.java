@@ -42,7 +42,13 @@ public class FlatController {
         }
         model.addAttribute("flat", flat);
         model.addAttribute("availableBlocks", blockService.listAllBlocks());
-        model.addAttribute("availableUsers", appUserService.listLocators());
+        if (flat.getOwner() != null) {
+            model.addAttribute("availableUsers", appUserService
+                    .listLocatorsWithoutFlatAndFlatOwner(flat.getOwner().getId()));
+        } else {
+            model.addAttribute("availableUsers", appUserService.listLocatorsWithoutFlat());
+        }
+
         return "flatManager.html";
     }
 

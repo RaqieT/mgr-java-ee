@@ -20,9 +20,9 @@ public interface AppUserService {
     AppUser getAppUser(UUID uuid);
     @Secured("ROLE_ADMINISTRATOR")
     AppUser getAppUserByUsername(String username);
-    @Secured("ROLE_ADMINISTRATOR")
-    List<AppUser> listModerators();
     @Secured({"ROLE_ADMINISTRATOR", "ROLE_MODERATOR"})
-    List<AppUser> listLocators();
+    List<AppUser> listLocatorsWithoutFlat();
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_MODERATOR"})
+    List<AppUser> listLocatorsWithoutFlatAndFlatOwner(UUID flatOwner);
     void register(AppUser appUser);
 }

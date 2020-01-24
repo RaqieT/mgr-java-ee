@@ -7,7 +7,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class Spring5Init extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{ConvertersLoader.class, SecurityConfiguration.class, Spring5Configuration.class, HibernatePersistenceConfiguration.class};
+        return new Class[]{I18nLoader.class, ConvertersLoader.class, SecurityConfiguration.class, Spring5Configuration.class, HibernatePersistenceConfiguration.class};
     }
 
     protected Class<?>[] getServletConfigClasses() {

@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.util.StringUtils;
+import org.springframework.util.StringUtils;
 import pl.raqiet.housing.cooperative.api.service.AppUserService;
 import pl.raqiet.housing.cooperative.dao.AppUserRepository;
 import pl.raqiet.housing.cooperative.domain.entity.AppUser;
@@ -77,13 +77,15 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
-    public List<AppUser> listModerators() {
-        return appUserRepository.findAllByRole(Role.MODERATOR);
+    public List<AppUser> listLocatorsWithoutFlat() {
+        return appUserRepository.findAllByRoleAndFlatIsNull(Role.LOCATOR);
     }
 
     @Override
-    public List<AppUser> listLocators() {
-        return appUserRepository.findAllByRole(Role.LOCATOR);
+    public List<AppUser> listLocatorsWithoutFlatAndFlatOwner(UUID flatOwner) {
+        List<AppUser> appUsers = listLocatorsWithoutFlat();
+        appUserRepository.findById(flatOwner).ifPresent(appUsers::add);
+        return appUsers;
     }
 
     @Override

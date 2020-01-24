@@ -16,4 +16,5 @@ public interface FlatRepository extends JpaRepository<Flat, UUID> {
             "order by f.creationTime asc")
     List<Flat> findAllByBlockModeratorUsernameOrderByCreationTimeAsc(@Param("username") String username);
     List<Flat> findAllByOrderByCreationTimeAsc();
+    Flat findByOwnerUsername(String username);
 }

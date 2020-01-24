@@ -13,4 +13,6 @@ public interface FlatService {
     List<Flat> listAllFlats();
     void removeFlat(UUID id);
     Flat getFlat(UUID id);
+    @Secured({"ROLE_ADMINISTRATOR", "ROLE_MODERATOR", "ROLE_LOCATOR"})
+    Flat getFlatOfLoggedInUser();
 }

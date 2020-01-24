@@ -73,24 +73,6 @@ public class Spring5Configuration implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 
-    @Bean
-    public MessageSource messageSource() {
-        var messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("/static/i18n/messages");
-        messageSource.setDefaultEncoding("UTF-8");
-        return messageSource;
-    }
-
-    // Configure LocaleResolver with default locale as 'en'
-    @Bean
-    public LocaleResolver localeResolver() {
-        var resolver = new CookieLocaleResolver();
-        resolver.setDefaultLocale(Locale.ENGLISH);
-        resolver.setCookieName("housing-cooperative");
-        resolver.setCookieMaxAge(4800);
-        return resolver;
-    }
-
     // Configure interceptor to switch language when 'lang' parameter found in request
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

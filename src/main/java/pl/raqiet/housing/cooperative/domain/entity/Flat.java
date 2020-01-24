@@ -2,8 +2,10 @@ package pl.raqiet.housing.cooperative.domain.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -12,12 +14,15 @@ import javax.persistence.*;
 public class Flat extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable=false)
-    @EqualsAndHashCode.Exclude
     private Block block;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
     private AppUser owner;
+
+    @OneToMany(mappedBy = "flat", fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Bill> bills;
 
     private int number;
 }

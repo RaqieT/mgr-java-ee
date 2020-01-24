@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/header :: header(#{'nav.bills'})"></head>
+<body>
+<nav th:replace="fragments/nav :: navbar"></nav>
+<div class="container">
+    <div sec:authorize="hasRole('ROLE_LOCATOR')" class="flat-info">
+        <h3 th:text="#{flat}"></h3>
+        <hr/>
+        <h3 th:if="${flat == null}" th:text="#{no.flat.assigned.yet}"></h3>
+        <h3 th:if="${flat != null}" th:text="${flat.block.address} + '/' + ${flat.number}"></h3>
+        <br/>
+        <br/>
+    </div>
+
+
+    <h3 th:text="#{nav.bills}"></h3>
+    <table class="table">
+        <tr>
+            <th scope="col" th:text="#{gas.usage}"></th>
+            <th scope="col" th:text="#{power.usage}"></th>
+            <th scope="col" th:text="#{water.usage}"></th>
+            <th scope="col" th:text="#{flat}"></th>
+            <th scope="col" th:text="#{creation.time}"></th>
+            <th scope="col" th:text="#{approved}"></th>
+            <th scope="col" th:text="#{actions}" sec:authorize="hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_MODERATOR')"></th>
+        </tr>
+        <tr th:each="bill : ${billList}">
+            <td th:text="${bill.gasUsage}"/>
+            <td th:text="${bill.powerUsage}"/>
+            <td th:text="${bill.waterUsage}"/>
+            <td th:text=" ${bill.flat.block.address} + '/' + ${bill.flat.number}"/>
+            <td th:text="${bill.creationTime}"/>
+            <td th:text="#{${bill.approved}}"/>
+            <td sec:authorize="hasAnyRole('ROLE_ADMINISTRATOR', 'ROLE_MODERATOR')">
+                <a class="btn btn-primary" th:href="@{bills/manager(billId=${bill.id})}" th:text="#{modify}"></a>
+                <a class="btn btn-primary" th:href="@{bills/approve(billId=${bill.id})}" th:text="#{approve}"></a>
+            </td>
+        </tr>
+    </table>
+    <a sec:authorize="hasRole('ROLE_LOCATOR')" th:if="${flat != null}" class="btn btn-success" th:href="@{bills/my-bill}" th:text="#{create.or.update.current.month.bill}"></a>
+</div>
+</body>
+</html>

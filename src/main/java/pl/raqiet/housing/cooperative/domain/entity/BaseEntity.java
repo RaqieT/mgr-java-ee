@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,9 +20,9 @@ public class BaseEntity {
 
     @Column(name = "created_date", updatable=false)
     @CreationTimestamp
-    private Timestamp creationTime;
+    private LocalDateTime creationTime;
 
     @Column(name = "modified_date")
     @UpdateTimestamp
-    private Timestamp modifiedDate;
+    private LocalDateTime modifiedDate;
 }
