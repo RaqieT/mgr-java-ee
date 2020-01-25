@@ -12,7 +12,7 @@ import pl.raqiet.housing.cooperative.domain.entity.AppUser;
 import pl.raqiet.housing.cooperative.domain.entity.Block;
 import pl.raqiet.housing.cooperative.domain.entity.Role;
 import pl.raqiet.housing.cooperative.util.AuthUtils;
-import pl.raqiet.housing.cooperative.util.DeleteValidationException;
+import pl.raqiet.housing.cooperative.util.HousingCooperativeException;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,12 +56,12 @@ public class BlockServiceImpl implements BlockService {
         }
         Block block = byId.get();
         if (!block.getModerators().isEmpty()) {
-            throw new DeleteValidationException(String.format("Block has assigned moderators [%s]. Remove this block from them.",
+            throw new HousingCooperativeException(String.format("Block has assigned moderators [%s]. Remove this block from them.",
                     block.getModerators().stream().map(AppUser::getUsername).collect(Collectors.joining(", "))));
         }
 
         if (!block.getFlats().isEmpty()) {
-            throw new DeleteValidationException(String.format("Block has assigned flats [%s]. Remove them first.\n",
+            throw new HousingCooperativeException(String.format("Block has assigned flats [%s]. Remove them first.\n",
                     block.getFlats().stream().map(f -> f.getBlock().getAddress() + "/" + f.getNumber())
                             .collect(Collectors.joining(", "))));
         }

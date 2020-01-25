@@ -14,6 +14,7 @@ import pl.raqiet.housing.cooperative.domain.entity.Bill;
 import pl.raqiet.housing.cooperative.domain.entity.Flat;
 import pl.raqiet.housing.cooperative.domain.entity.Role;
 import pl.raqiet.housing.cooperative.util.AuthUtils;
+import pl.raqiet.housing.cooperative.util.HousingCooperativeException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,8 +33,7 @@ public class BillServiceImpl implements BillService {
     public void addLoggedInUserFlatBill(Bill bill) {
         Flat flat = flatService.getFlatOfLoggedInUser();
         if (flat == null) {
-            System.out.println("User has no flat");
-            return;
+            throw new HousingCooperativeException("User has no flat");
         }
         bill.setFlat(flat);
         billRepository.save(bill);
@@ -48,8 +48,7 @@ public class BillServiceImpl implements BillService {
     public void editBill(Bill bill) {
         Bill byId = billRepository.findById(bill.getId()).orElse(null);
         if (byId == null) {
-            System.out.println("Bill not found");
-            return;
+            throw new HousingCooperativeException("Bill not found");
         }
 
         if (AuthUtils.isLoggedInUserInRole(Role.MODERATOR)) {
