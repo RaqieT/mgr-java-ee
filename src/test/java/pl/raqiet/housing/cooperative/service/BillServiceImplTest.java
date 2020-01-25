@@ -52,7 +52,22 @@ public class BillServiceImplTest {
     @Test
     public void removeBillDeniedAuthTest() {
         // given
+        AppUser a = new AppUser();
+        a.setUsername("someanother");
+        Flat f = new Flat();
+        f.setOwner(a);
+        Bill bill = new Bill();
         UUID id = UUID.randomUUID();
+        bill.setId(id);
+        bill.setFlat(f);
+        // when
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                "user",
+                "LOCATOR",
+                Collections.singleton(Role.LOCATOR)
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        when(billRepository.findById(id)).thenReturn(Optional.of(bill));
 
         // when, then
         assertThrows(AccessDeniedException.class, () -> billService.removeBill(id));
