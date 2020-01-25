@@ -10,6 +10,7 @@ import pl.raqiet.housing.cooperative.domain.entity.AppUser;
 import pl.raqiet.housing.cooperative.domain.entity.Flat;
 import pl.raqiet.housing.cooperative.domain.entity.Role;
 import pl.raqiet.housing.cooperative.util.AuthUtils;
+import pl.raqiet.housing.cooperative.util.DeleteValidationException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -58,13 +59,17 @@ public class FlatServiceImpl implements FlatService {
 
     @Override
     public void removeFlat(UUID id) {
-        if (AuthUtils.isLoggedInUserInRole(Role.ADMINISTRATOR)) {
-            flatRepository.deleteById(id);
+        Flat flat = flatRepository.findById(id).orElse(null);
+        if (flat == null) {
             return;
         }
 
-        Flat flat = flatRepository.findById(id).orElse(null);
-        if (flat == null) {
+        if (!flat.getBills().isEmpty()) {
+            throw new DeleteValidationException("Flat has assigned bills. Remove them first.");
+        }
+
+        if (AuthUtils.isLoggedInUserInRole(Role.ADMINISTRATOR)) {
+            flatRepository.deleteById(id);
             return;
         }
 
